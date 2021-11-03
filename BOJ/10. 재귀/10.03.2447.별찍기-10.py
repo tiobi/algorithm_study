@@ -10,3 +10,5 @@
 """
 import sys, math
 
+def drawStar(N):
+    pass
