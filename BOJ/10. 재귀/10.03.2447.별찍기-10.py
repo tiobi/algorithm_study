@@ -1,5 +1,5 @@
 """
-# 10. 3. 2447. 별찍기
+# 10. 03. 2447. 별찍기
 # DATE SOLVED: NOT SOLVED YET
 
 # COMMENTS:
