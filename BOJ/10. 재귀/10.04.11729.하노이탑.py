@@ -21,5 +21,6 @@ def hanoi(n, _from, to, aux):
 
 N = int(sys.stdin.readline())   # 원판의 개수
 
-print(2**N - 1)
+#N개의 원판을 전부 이동시키면 최소 2^N - 1 번으 ㅣ이동 횟수가 필요하다.
+print(2**N - 1)                 #이동 횟수
 hanoi(N, 1, 3, 2)
