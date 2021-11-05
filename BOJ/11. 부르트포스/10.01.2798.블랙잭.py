@@ -22,12 +22,15 @@ def blackJack(num_of_cards, sum_limit, list_of_cards):
     # sum limit과 최대한 가까운 수
     max_sum = 0
 
-    for i in range(num_of_cards):
-        for j in range(i+1, num_of_cards):
+    for i in range(0, num_of_cards-2):
+        for j in range(i+1, num_of_cards-1):
             for k in range(i+2, num_of_cards):
                 sum = list_of_cards[i] + list_of_cards[j] + list_of_cards[k]    # 세 카드의 합이
-                if sum <= sum_limit and sum > max_sum:                          # limit보다 작고 max sum보다 크다면
-                    max_sum = sum                                               # 새로운 max sum 저장
+                if sum > sum_limit:                                             # limit보다 크다면
+                    continue                                                    # 반복
+                else:
+                    if sum > max_sum:                                           # sum이 max sum보다 크다면
+                        max_sum = sum                                           # 새로운 max sum 저장
 
     return max_sum
 
