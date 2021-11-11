@@ -10,7 +10,8 @@
     #@@@  -> 다시 칠해야 하는 사각형 2개
     @#@#
 
-    부르트포스를 적용하면 O(N^4)
+    왼쪽 상단을 기준으로 하면 틀릴 수도 있다. 
+    칠해야 하는 체스판을 계산해서 범위를 넘으면 다시 계산.
 """
 
 import sys
@@ -22,48 +23,34 @@ def next_square(now):
     return 'B'
 
 
-def squares_to_fill(board, N, M):
+def get_minimum_squares_to_fill(board, N, M):
+    min_sq_to_fill = N * M  # Set Max 
 
-    min_fills = N*M
-    for a in range(0, N-7):
-        for b in range(0, M-7):
-            fills = 0
-            now_square = board[a][b]
-            
-            # 보드  탐색 시작. 
-            for i in range(a, 8+a):
-                for j in range(b, 8+b):
-                    if i == a and j == b: continue
+    for i in range(0, N-7):             # N과 M이 0보다 큰 경우
+        for j in range(0, M-7):         # 8 * 8 보드 크기를 정해서 searching
 
-                    # 지금 칸이랑 다음 칸이랑 
-                    # 다른 경우(좋은 뜻)
-                    elif now_square != board[i][j]:
-                        now_square = next_square(now_square)
+            squares_to_fill = 0         # 이번 8 * 8 보드에서 채워야 하는 square 수 초기화
+            now_square = board[i][j]    # 왼쪽 상단 기준
+
+            for a in range(i, i+8):
+                for b in range(j, j+8):
+                    if a == i and b == j:# 첫 칸 패스
                         pass
-                    
-                    # 같은 경우(안 좋은 뜻)
-                    else:
-                        fills += 1                              # 다시 칠하는 칸 + 1      
+
+                    if now_square == next_square(now_square):       # 지금 칸과 다음 칸이 같으면(안 좋은 뜻)
+                        squares_to_fill += 1
+                        now_square = next_square
+
+                    else:                                           # 지금 칸과 다음 칸이 다르면(좋은 뜻)
                         now_square = next_square(now_square)
 
-                #한 줄 넘어감
-                now_square = next_square(now_square)
+                now_square = next_square(now_square)                # 줄 넘어감
 
-            # 탐색 끝
-            min_fills = min(fills, min_fills)
-
-    return min_fills
+            min_sq_to_fill = min(min_sq_to_fill, squares_to_fill)
 
 
-def minimum_squares_to_fill(board, col, row):
-    # 최소값
-    min_fills = col*row                  
-    for i in (col - 8):
-        for j in (row - 8):
-            min = min(min, squares_to_fill(board[i][j]))
+    return min_sq_to_fill
 
-
-    return min_fills
 
 
 board = []
@@ -72,4 +59,5 @@ N, M = map(int, sys.stdin.readline().split())
 for _ in range(N):
     board.append(sys.stdin.readline())
 
-print(squares_to_fill(board, N, M))
+
+print(get_minimum_squares_to_fill(board, N, M))
