@@ -1,6 +1,6 @@
 """
 # 11. 01. 2750. 수 정렬하기 
-# DATE SOLVED: Solving...
+# DATE SOLVED: 21.12.24
 
 # COMMENTS:
     N개 입력, 오름차순 정렬.
