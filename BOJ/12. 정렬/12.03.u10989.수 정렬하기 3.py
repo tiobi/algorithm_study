@@ -4,18 +4,31 @@
 
 # COMMENTS:
     N 개의 수를 오름차순으로 정렬.
-    수의 범위가 작다면 카운팅 정렬을 사용.
-     
+    O(nlogn)으로 풀어야 하는 문제. 
+    카운팅 정렬을 사용해봄. 
 """
 
-import sys
+import sys 
 
 N = int(sys.stdin.readline())
-array = []
+
+input_arr = []
 for _ in range(N):
-    array.append(int(sys.stdin.readline()))
+    input_arr.append(int(sys.stdin.readline()))
 
+max_num = max(input_arr)
+counting_arr = [0] * max_num
 
-array.sort()
-for i in range(N):
-    print(array[i])
+# adding up counts
+for i in range(0, len(input_arr)):
+    counting_arr[input_arr[i] - 1] += 1
+
+for i in range(1, max_num):
+    counting_arr[i] = counting_arr[i - 1] + counting_arr[i]
+
+sorted_arr = [0] * max_num
+for i in range(max_num, 0, -1):
+    sorted_arr[input_arr[i] - 1] = counting_arr[input_arr[i] - 1]
+    counting_arr[input_arr[i] - 1] -= 1
+
+print(sorted_arr)
