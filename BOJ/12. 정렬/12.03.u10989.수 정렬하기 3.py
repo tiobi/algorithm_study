@@ -27,8 +27,9 @@ for i in range(1, max_num):
     counting_arr[i] = counting_arr[i - 1] + counting_arr[i]
 
 sorted_arr = [0] * max_num
-for i in range(max_num, 0, -1):
-    sorted_arr[input_arr[i] - 1] = counting_arr[input_arr[i] - 1]
+for i in range(0, max_num):
+    sorted_arr[counting_arr[input_arr[i] - 1] - 1] = input_arr[i]
     counting_arr[input_arr[i] - 1] -= 1
 
 print(sorted_arr)
+
