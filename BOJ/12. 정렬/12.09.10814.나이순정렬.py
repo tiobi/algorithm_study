@@ -1,6 +1,6 @@
 """
 # 12. 09. 10814. 나이순 정렬
-# DATE SOLVED: Solving...
+# DATE SOLVED: 22. 01. 03
 
 # COMMENTS:
     나이와 이름순으로 정렬

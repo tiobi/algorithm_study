@@ -1,6 +1,6 @@
 """
 # 12. 08. 1181. 단어정렬
-# DATE SOLVED: 22. 01 03
+# DATE SOLVED: 22. 01. 03
 
 # COMMENTS:
     N개의 알파벳 소문자 단어 정렬
