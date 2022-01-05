@@ -1,6 +1,6 @@
 """
 # 14. 02. 15650. N과 M 2
-# DATE SOLVED: Solving...
+# DATE SOLVED: 22. 01. 05
 
 # COMMENTS:
     자연수 N과 M이 주어졌을 때 중복 없이 M개를 고른 수열. 
@@ -8,18 +8,19 @@
 """
 
 import sys
-
 N, M = map(int, sys.stdin.readline().split())
-arr = []
 
-def DFS(array):
+def DFS(array, k):
     if len(array) == M:
         print(" ".join(map(str, array)))
+        return
 
-    for i in range(1, N + 1):
+    for i in range(k, N + 1):
         if i not in array:
             array.append(i)
-            DFS(array)
+            DFS(array, i)
             array.pop()
 
-DFS(arr)
+array = []
+
+DFS(array, 1)
